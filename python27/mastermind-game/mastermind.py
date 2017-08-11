@@ -45,7 +45,7 @@ level = int(raw_input("enter level(3-10): "))
 level_range = level_range(level)
 word = str(random.randint(level_range['low'],level_range['high']))
 
-word = str(random.randint(100,999))
+#word = str(random.randint(100,999))
 guess_count = 0
 print "Begin MasterMind"
 while True:
