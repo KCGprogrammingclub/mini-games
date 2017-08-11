@@ -27,6 +27,30 @@ def level_range(level):
     low = int('1' + '0'*(level-1))
     high = int('9'*level)
     return {'high': high , 'low' : low} 
+
+def get_level_range():
+  u_limit = 10
+  l_limit = 3
+  in_err = False
+  while True:
+    if in_err:
+      print "Invalid input.."
+    level = int(raw_input("Enter Level(3-10): "))
+    if l_limit <= level <= u_limit:
+      break
+    else:
+      in_err = True
+  
+  return level_range(level)
+
+def get_guess(level_range):
+  while True:
+    guess = raw_input("Enter Guess : ")
+    if level_range['low'] <= int(guess) <= level_range['high']:
+      break
+    else:
+      print "Invalid Guess.."
+  return guess
     
 
 #-----testing-----
@@ -41,8 +65,8 @@ def level_range(level):
 
 #-------main-----
 
-level = int(raw_input("enter level(3-10): "))
-level_range = level_range(level)
+#level = int(raw_input("Enter level(3-10): "))
+level_range = get_level_range()
 word = str(random.randint(level_range['low'],level_range['high']))
 
 #word = str(random.randint(100,999))
@@ -50,7 +74,7 @@ guess_count = 0
 print "Begin MasterMind"
 while True:
     guess_count += 1
-    guess = raw_input("Guess: ")
+    guess = get_guess(level_range)
     pos_count = pos_counter(word,guess)
     contain_count = contain_counter(word , guess)
 
@@ -59,4 +83,3 @@ while True:
         break
 
     print pos_count, contain_count
-
