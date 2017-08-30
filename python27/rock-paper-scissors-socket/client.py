@@ -23,6 +23,7 @@ host = "10.10.18.75"
 port = 12341                # Reserve a port for your service.
 
 s.connect((host, port))
+a = getPlayerInput()
 s.send(a)
 
 print s.recv(1024)

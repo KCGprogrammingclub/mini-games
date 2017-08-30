@@ -30,10 +30,10 @@ def winnerDecide(serverChoice,clientChoice):
         
         
 
-playerServerChoice = getPlayerInput()
+
 s = socket.socket()         # Create a socket object
 host = socket.gethostname() # Get local machine name
-port = 12341                # Reserve a port for your service.
+port = 12342                # Reserve a port for your service.
 s.bind((host, port))        # Bind to the port
 
 s.listen(5)                 # Now wait for client connection.
@@ -43,11 +43,12 @@ while True:
        print '[Waiting for connection...]'
        c, addr = s.accept()
        print 'Got connection from', addr
+       
    else:
        # Halts
        #print '[Waiting for response...]'
        playerClientChoice = c.recv(1024)
-       
+       playerServerChoice = getPlayerInput()
        result = winnerDecide(playerServerChoice,playerClientChoice)
        print result
        
